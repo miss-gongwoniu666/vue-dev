@@ -1,17 +1,14 @@
 <template>
   	<div class="home_container">
-        <itemcontainer father-component="home"></itemcontainer>
+       <router-link to="wei3d">wei3d</router-link>
     </div>
 </template>
 
 <script>
-import itemcontainer from '../../components/itemcontainer'
+
 
 export default {
 	name: 'home',
-  	components: {
-  		itemcontainer
-  	},
     created(){
         
     }
@@ -20,6 +17,8 @@ export default {
 
 <style lang="less" scoped>
     .home_container{
-
+        div{
+            color: white;
+        }
     }
 </style>
