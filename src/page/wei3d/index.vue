@@ -143,12 +143,15 @@ export default {
        width:  6.75rem;
        height: 5rem;
        position: relative;
-       transform: scale(.2,.2);
+               transform: scale(.2,.2);
+	   transform-origin: center 20%;	                 
        animation: car_ani 1s forwards;
        @keyframes car_ani {
-           to{
-               transform: scale(1,1);
-           }
+           0%{
+		   }
+		   100%{
+               transform: none;
+		   }
        }
        .car1{
            position: absolute;
@@ -169,7 +172,13 @@ export default {
            height: 3.12rem;
            background: url(../../images/wei3d/car02.png) no-repeat;
            background-size: contain;
-
+			animation: car_ani2 .2s infinite ease-in-out;
+			@keyframes car_ani2{
+				to{
+					transform: scaleY(1.005);
+					transform-origin: center bottom;
+				}
+			}
        } 
     }
 </style>
