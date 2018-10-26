@@ -1,6 +1,7 @@
 <template>
   	<div class="home_container">
        <router-link to="wei3d">wei3d</router-link>
+       <router-link class="" to="answer">answer</router-link>
     </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
 
 <style lang="less" scoped>
     .home_container{
-        div{
+        a{
             color: white;
         }
     }
