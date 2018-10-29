@@ -1,5 +1,8 @@
 <template>
     <div class="answer">
+        <div class="bg-wrap">
+            <div class="bg"></div>
+        </div>
         <!-- 初始slogan -->
         <div class="perspective">
             <div class="transform-style">
@@ -14,6 +17,10 @@
             <ul class='score-main'>
                 <li v-for="(list,index) in lists" :data-index="formateindex(index)" @click='changemain(index)'>{{list.day}}</li>
             </ul>
+        </div>
+        <div class="banner">
+            <div class="banner-out">哈哈哈哈，啦啦啦啦啦，吧吧吧吧吧</div>      
+            <div class="banner-in">哈哈哈哈，啦啦啦啦啦，吧吧吧吧吧</div>
         </div>
     </div>
 </template>
@@ -41,9 +48,6 @@ export default {
                 },
                  {
                     day: '周六'
-                },
-                 {
-                    day: '周日'
                 }
             ],
             items: [
@@ -53,16 +57,12 @@ export default {
     },
     methods:{
         formateindex(index){
-            return (index-this.selectample)+5;
+            console.log(index,this.selectample)
+            return (this.selectample-index)+ 6;
         },
         // 点击记录点击索引
-        changeexample(index){
-            console.log('change')
+        changemain(index){
             this.selectample = index;
-        },
-
-        changemain(){
-            console.log('lele')
         }
     },
     created(){
@@ -89,6 +89,41 @@ export default {
     width: 100%;
     height: 100%;
     height: 100vh;
+    .bg-wrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2rem;
+        height: 2rem;
+        animation: circle_ani 8s infinite linear;
+        transform-origin: 48% 40%;
+        @keyframes circle_ani{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        .bg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(../../images/answer/ball1.png) center center no-repeat;
+            background-size: contain;
+            animation: circle_ani_reverse 8s infinite linear;
+            @keyframes circle_ani_reverse{
+                from{
+                    transform: rotate(0deg);
+                }
+                to{
+                    transform: rotate(-360deg);
+                }
+            }
+        }
+    }
     .perspective{
         perspective: 1000px;
         .transform-style{
@@ -111,7 +146,7 @@ export default {
             .slogan{
                 position: absolute;
                 left: 50%;
-                top: .5rem;
+                top: 1.5rem;
                 margin-left: -2rem;
                 width: 4.05rem;
                 height: 1.9rem;
@@ -127,7 +162,7 @@ export default {
     // score-main
     .score-wrap{
         position: absolute;
-        top: 4rem;
+        top: 5rem;
         left: 50%;
         width: 7rem;
         height: 5rem;
@@ -157,25 +192,28 @@ export default {
             }
         }
         ul.score-main{
-            margin: 0 auto;
-            width: 80%;
-            height: 1rem;
+            position: absolute;
+            left: 15%;
+            top: 1rem;
+            width: 70%;
+            height: 2rem;
             list-style: none;
             li{
-                list-style: none;
-                float: left;
+                position: absolute;
+                left: 0;
+                top: 0;
+                margin-left: -.35rem;
                 width: 0.7rem;
                 height: .7rem;
                 text-align: center;
                 line-height: .7rem;
                 border-radius: 50%;
                 font-size: .24rem;
-                background: url(../../images/answer/circle-right.png) no-repeat;
-                background-size: 100% 100%;
-                -webkit-transition: -webkit-transform .3s ease-in-out;
+                background-color: yellow;
+                &:nth-of-type(2n){
+                    background-color: pink;
+                }
                 transition: transform .3s ease-in-out;
-                -webkit-transform-origin: center 80%;
-                transform-origin: center 80%;
                 @for $i from 1 through 6 {
                     &:nth-of-type(#{$i}) {
                         left: ($i)*100%/7;
@@ -183,48 +221,81 @@ export default {
                     &[data-index="#{$i}"], &[data-index="#{12-$i}"] {
                         z-index: #{$i};
                     }
+                    @if ($i!=6){
+                         &[data-index='#{$i}']{
+                            transform: translateX($i*.09rem);
+                         }
+                        &[data-index="#{12-$i}"]{
+                            transform: translateX(-$i*.09rem);
+                        }
+                    }
+                   
+                }
+                &[data-index='6']{
+                    transform: scale(2.2);
+                    transform-origin: center 80%;
                 }
             }
         }
         
-        .score-status-this {
-            li {
-                &[data-index="6"] {
-                    -webkit-transform: scale((150/70));
-                    transform: scale((150/70));
-                }
-                @for $i from 1 through 6 {
-                    &:nth-of-type(#{$i}) {
-                        left: ($i)*100%/7;
-                    }
-                    &[data-index="#{$i}"], &[data-index="#{12-$i}"] {
-                        z-index: #{$i};
-                    }
-                    @if ($i!=6) {
-                        &[data-index="#{$i}"] {
-                            transform: translateX(rpx(-$i*9));
-                            -webkit-transform: translateX(rpx(-$i*9));
-                            span {
-                                box-shadow: inset rpx(5) 0 rpx(2) rpx(0) rgba(0, 0, 0, .08);
-                            }
-                        }
-                        &[data-index="#{12-$i}"] {
-                            transform: translateX(rpx($i*9));
-                            -webkit-transform: translateX(rpx($i*9));
-                            span {
-                                box-shadow: rpx(5) 0 rpx(2) rpx(0) rgba(0, 0, 0, .08);
-                            }
-                        }
+       
+    }
+    //banner
+    .banner{
+        position: absolute;
+        left: 50%;
+        top: 4rem;
+        margin-left: -3.5rem;
+        width: 7rem;
+        height: .6rem;
+        line-height: .6rem;
+        background: white;
+        color: red;
+        font-size: .24rem;
+        overflow: hidden;
+        .banner-out{
+            animation: right_ani infinite 10s linear;
+                @keyframes right_ani {
+
+                    to{
+                        transform: translate(7rem);
                     }
                 }
-                &:nth-of-type(1) span, &:nth-of-type(6) span {
-                    box-shadow: none;
+        }
+        .banner-in{
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: white;
+            width: 100%;
+            height: 100%;
+            animation: right_ani infinite 10s linear;
+                @keyframes right_ani {
+
+                    to{
+                        transform: translate(7rem);
+                    }
+                }
+            &:after{
+                position: absolute;
+                left: 0;
+                top: 0;
+                content: '';
+                width: 1rem;
+                height: 100%;
+                background: yellow;
+                animation: right_ani_reverse infinite 10s linear;
+                @keyframes right_ani_reverse {
+
+                    to{
+                        transform: translate(-7rem);
+                    }
                 }
             }
-
+            
         }
-    }
-    
+       
+    }   
 }
 </style>
 
