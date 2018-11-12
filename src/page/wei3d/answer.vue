@@ -12,7 +12,7 @@
                 <li v-for='(item,index) in items' :data-index='formateindex(index)' @click="changeexample(index)">{{item}}</li>
             </ul> -->
             <ul class='score-main'>
-                <li v-for="(list,index) in lists" :data-index="formateindex(index)" @click='changemain(index)'>{{list.day}}</li>
+                <li  :key='index' v-for="(list,index) in lists" :data-index="formateindex(index)" @click='changemain(index)'>{{list.day}}</li>
             </ul>
         </div>
     </div>
