@@ -18,5 +18,8 @@ export default [{
     }, {
         path: '/scroll',
         component: r => require.ensure([], () => r(require('../page/scrolls/Scrollpages')), 'scroll')
+    }, {
+        path: '/city',
+        component: r => require.ensure([], () => r(require('../page/city')), 'city')
     }]
 }]

@@ -3,6 +3,7 @@
        <router-link to="wei3d">wei3d</router-link>
        <router-link class="" to="answer">answer</router-link>
        <router-link class="" to="scroll">scroll</router-link>
+       <router-link class="" to="city">城市列表</router-link>
     </div>
 </template>
 
