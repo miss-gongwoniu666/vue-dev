@@ -4,6 +4,7 @@
        <router-link class="" to="answer">answer</router-link>
        <router-link class="" to="scroll">scroll</router-link>
        <router-link class="" to="city">城市列表</router-link>
+       <router-link class="" to="es6">es6</router-link>
     </div>
 </template>
 

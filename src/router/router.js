@@ -21,5 +21,8 @@ export default [{
     }, {
         path: '/city',
         component: r => require.ensure([], () => r(require('../page/city')), 'city')
+    }, {
+        path: '/es6',
+        component: r => require.ensure([], () => r(require('../page/es6')), 'es6')
     }]
 }]
